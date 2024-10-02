@@ -2,12 +2,12 @@ import type { BaseAIConfig } from 'baseai';
 
 export const config: BaseAIConfig = {
 	log: {
-		isEnabled: true,
+		isEnabled: false,
 		logSensitiveData: false,
 		pipe: true,
-		'pipe.completion': true,
-		'pipe.request': true,
-		'pipe.response': true,
+		'pipe.completion': false,
+		'pipe.request': false,
+		'pipe.response': false,
 		tool: true,
 		memory: false
 	},
