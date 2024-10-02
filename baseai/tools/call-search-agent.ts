@@ -1,7 +1,16 @@
-import { ToolI } from '@baseai/core';
+import { ToolI, Pipe } from '@baseai/core';
+import pipeAiSearchPipe from '../pipes/ai-search-pipe';
 
-export async function call_search_agent() {
+const pipe = new Pipe(pipeAiSearchPipe());
+
+export async function call_search_agent({customerQuery}: {customerQuery: string}) {
 	// Your tool logic here
+	console.log(`customer query: ${customerQuery}`);
+	const linuxSearchAgentResp = await pipe.run({
+		messages: [{ role: 'user', content: customerQuery }],
+	});
+
+	return linuxSearchAgentResp.completion;
 }
 
 const callSearchAgentTool = (): ToolI => ({

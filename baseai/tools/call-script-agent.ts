@@ -1,7 +1,16 @@
-import { ToolI } from '@baseai/core';
+import { ToolI, Pipe } from '@baseai/core';
+import  pipeLinuxScriptAgent  from '../pipes/linux-script-agent'
 
-export async function call_script_agent() {
+const pipe = new Pipe(pipeLinuxScriptAgent());
+
+export async function call_script_agent({customerQuery}: {customerQuery: string}) {
 	// Your tool logic here
+	console.log(`customer query: ${customerQuery}`);
+	const linuxScriptAgentResp = await pipe.run({
+		messages: [{ role: 'user', content: customerQuery }],
+	});
+
+	return linuxScriptAgentResp.completion;
 }
 
 const callScriptAgentTool = (): ToolI => ({

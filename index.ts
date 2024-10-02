@@ -7,51 +7,30 @@ const pipe = new Pipe(pipeItLinuxSupportAgent());
 
 // const userMsg = 'How to check particular process cpu usage using command line?';
 const userMsg = 'How to update snapd in ubunut20?';
+// const userMsg = 'Create a bash script to watch cpu freq with 1 second interval';
+const userMsg2 = 'What ROS2 version is compatible with Ubuntu 24?';
 
 
 async function main() {
 
-	const {stream} = await pipe.run({
+
+	const {completion: linuxAgentResp, threadId} = await pipe.run({
 		messages: [{ role: 'user', content: userMsg }],
-		stream: true
-	
+
 	});
-	const runner = getRunner(stream);
+	console.log(`threadid: ${threadId}\n`);
+	console.log(linuxAgentResp);
 
-	for await (const chunk of runner) {
-		// const textPart = chunk.choices[0]?.delta?.content || '';
-		// Or use the utility function
-		const textPart = getTextContent(chunk);
 
-		// Print to the console without new line
-		process.stdout.write(textPart);
-	}
+	const {completion: linuxAgentResp2 } = await pipe.run({
+		messages: [{ role: 'user', content: userMsg2 }],
+		threadId: threadId
 
-	// const linuxAgentResp = await pipe.run({
-	// 	messages: [{ role: 'user', content: userMsg }],
-	// 	stream: true
-	
-	// });
+	});
+	console.log(`threadid: ${threadId}\n`);
+	console.log(linuxAgentResp2);
 
-	// console.log(linuxAgentResp);
 
-	// const runner = getRunner(stream);
-
-	// runner.on('connect', () => {
-	// 	console.log('Stream started.\n');
-	// });
-
-	// runner.on('content', content => {
-	// 	process.stdout.write(content);
-	// });
-
-	// runner.on('end', () => {
-	// 	console.log('\nStream ended.');
-	// });
-
-	// runner.on('error', error => {
-	// 	console.error('Error:', error);
-	// });
 
 	
 }
