@@ -1,0 +1,20 @@
+{
+  "name": "cli-baseai",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "baseai": "baseai"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@baseai/core": "^0.9.0",
+    "inquirer": "^11.1.0"
+  },
+  "devDependencies": {
+    "baseai": "^0.9.0"
+  }
+}
