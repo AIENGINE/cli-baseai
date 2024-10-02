@@ -5,7 +5,7 @@ const pipeAiSearchPipe = (): PipeI => ({
 	apiKey: process.env.LANGBASE_API_KEY!,
 	name: `ai-search-pipe`,
 	description: `The pipe uses search pipe lb `,
-	status: `private`,
+	status: `public`,
 	model: `openai:gpt-4o-mini`,
 	stream: true,
 	json: false,
